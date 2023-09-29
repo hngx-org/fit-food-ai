@@ -55,3 +55,9 @@ TextStyle nameText = GoogleFonts.poppins(
   fontWeight: FontWeight.w700,
   color: kcTxtColorDark,
 );
+
+TextStyle inputText = GoogleFonts.poppins(
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+  color: kcTxtColorDark,
+);
