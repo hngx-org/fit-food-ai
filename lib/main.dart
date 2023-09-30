@@ -1,3 +1,4 @@
+import 'package:fit_food/features/onboarding/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      home: Container(),
+      home: const SplashScreen(),
     );
   }
 }
