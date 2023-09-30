@@ -97,16 +97,21 @@ class _SignInState extends State<SignIn> {
               ),
             ),
             Align(alignment: Alignment.centerRight,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Text('Forgot Password?'),
-                ),
+                child: TextButton( onPressed: () {
+
+                },
+                  child: Text('Forgot Password?',
+                    style: TextStyle(
+                      color: kcTxtColorDark,
+                      fontWeight: FontWeight.w200
+                    ),
+                  ),),
             ),
             Center(
               child: SizedBox(
                 width: 300,
                 child: Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
+                  padding: const EdgeInsets.only(top: 8.0),
                   child: ElevatedButton(onPressed: () {},
                     style:  ButtonStyle(
                       backgroundColor: MaterialStateProperty.all(kcBtnColor),
@@ -126,6 +131,7 @@ class _SignInState extends State<SignIn> {
                           fontWeight: FontWeight.w700
                       ),
                     ),
+
 
                   ),
                 ),
