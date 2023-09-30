@@ -76,7 +76,7 @@ class _SignInState extends State<SignIn> {
                   obscureText: _passwordVisible,
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    prefixIcon: Icon(Icons.lock_outlined,
+                    prefixIcon: const Icon(Icons.lock_outlined,
                       color: kcChatRcvdColor,),
                     suffixIcon: GestureDetector(
                       onTap: () {
@@ -100,10 +100,11 @@ class _SignInState extends State<SignIn> {
                 child: TextButton( onPressed: () {
 
                 },
-                  child: Text('Forgot Password?',
+                  child: const Text('Forgot Password?',
                     style: TextStyle(
                       color: kcTxtColorDark,
-                      fontWeight: FontWeight.w200
+                      fontWeight: FontWeight.w200,
+                      fontFamily: 'Poppins',
                     ),
                   ),),
             ),
