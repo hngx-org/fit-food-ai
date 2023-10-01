@@ -77,6 +77,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       secondChild: AppBTN(
                         title: 'CONTINUE',
                         onTap: () {
+
                           Navigator.pushReplacementNamed(context, '/signIn');
                         },
                       ),
