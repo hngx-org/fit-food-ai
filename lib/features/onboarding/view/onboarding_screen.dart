@@ -31,6 +31,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: kcWhiteColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
@@ -77,7 +78,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       secondChild: AppBTN(
                         title: 'CONTINUE',
                         onTap: () {
-
                           Navigator.pushReplacementNamed(context, '/signIn');
                         },
                       ),

@@ -26,9 +26,11 @@ class _SignInState extends State<SignIn> {
 
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         backgroundColor: kcWhiteColor,
         elevation: 0,
       ),
+      backgroundColor: kcWhiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.03),

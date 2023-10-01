@@ -37,6 +37,7 @@ class _SignUpState extends State<SignUp> {
         backgroundColor: kcWhiteColor,
         elevation: 0,
       ),
+      backgroundColor: kcWhiteColor,
       body: SingleChildScrollView(
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: width * 0.03),
@@ -129,7 +130,7 @@ class _SignUpState extends State<SignUp> {
                         ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.pushNamed(context, '/signIn');
+                            Navigator.pushReplacementNamed(context, '/signIn');
                           },
                       ),
                     ],
