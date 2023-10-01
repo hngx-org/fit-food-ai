@@ -17,3 +17,4 @@ const String onBoard1 = 'assets/send-msg.png';
 const String onBoard2 = 'assets/diet-list.png';
 const String onBoard3 = 'assets/running.png';
 const String smallLogo = 'assets/small-logo.png';
+const String userImage = 'assets/dummy-user.jpg';
