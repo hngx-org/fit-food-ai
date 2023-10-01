@@ -29,6 +29,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -36,19 +37,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           child: Column(
             children: [
               Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: TextButton(
-                        style: TextButton.styleFrom(
-                            foregroundColor: kcTxtColorDark),
-                        onPressed: () {},
-                        child: Text(
-                          'SKIP',
-                          style: btnText.copyWith(
-                              color: kcTxtColorDark, fontSize: 18),
-                        )),
-                  )),
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    style:
+                        TextButton.styleFrom(foregroundColor: kcTxtColorDark),
+                    onPressed: () {},
+                    child: Text(
+                      'SKIP',
+                      style:
+                          btnText.copyWith(color: kcTxtColorDark, fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
                   flex: 3,
                   child: PageView.builder(
@@ -57,8 +60,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     itemBuilder: (context, index) => OnboardingItem(
                         onboardingInfo: OnboardingInfoModel.defaultInfo[index]),
                   )),
-              const SizedBox(
-                height: 18,
+              SizedBox(
+                height: height * 0.018,
               ),
               Center(
                   child: OnboardingIndicator(
@@ -73,10 +76,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                         title: 'CONTINUE',
                         onTap: () {},
                       ),
-                      crossFadeState:
-                          _currentPage+1 == OnboardingInfoModel.defaultInfo.length
-                              ? CrossFadeState.showSecond
-                              : CrossFadeState.showFirst,
+                      crossFadeState: _currentPage + 1 ==
+                              OnboardingInfoModel.defaultInfo.length
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
                       secondCurve: Curves.easeIn,
                       duration: const Duration(milliseconds: 300)),
                 ),
