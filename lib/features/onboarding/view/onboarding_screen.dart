@@ -43,7 +43,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   child: TextButton(
                     style:
                         TextButton.styleFrom(foregroundColor: kcTxtColorDark),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/signIn');
+                    },
                     child: Text(
                       'SKIP',
                       style:
@@ -74,7 +76,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       firstChild: const SizedBox(),
                       secondChild: AppBTN(
                         title: 'CONTINUE',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, '/signIn');
+                        },
                       ),
                       crossFadeState: _currentPage + 1 ==
                               OnboardingInfoModel.defaultInfo.length

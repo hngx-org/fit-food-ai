@@ -1,4 +1,6 @@
 import 'package:fit_food/features/onboarding/view/splash_screen.dart';
+import 'package:fit_food/features/screens/sign_in.dart';
+import 'package:fit_food/features/screens/sign_up.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,6 +21,10 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Poppins',
       ),
       home: const SplashScreen(),
+      routes: {
+        '/signIn': (ctx) => const SignIn(),
+        '/signUp': (ctx) => const SignUp(),
+      },
     );
   }
 }

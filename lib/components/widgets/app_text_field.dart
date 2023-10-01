@@ -39,7 +39,7 @@ class AppTXTField extends StatelessWidget {
       keyboardType: keyboardType,
       obscuringCharacter: '*',
       decoration: InputDecoration(
-        contentPadding: const EdgeInsets.all(10),
+        contentPadding: const EdgeInsets.all(15),
         prefixIcon: leading,
         suffixIcon: trailing,
         hintText: hint,
