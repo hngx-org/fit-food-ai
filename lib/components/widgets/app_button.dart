@@ -22,7 +22,7 @@ class AppBTN extends StatelessWidget {
       splashColor: kcRedColorLight,
       child: Container(
         width: double.infinity,
-        height: height * 0.06,
+        height: height * 0.065,
         decoration: BoxDecoration(
           color: kcBtnColor,
           borderRadius: BorderRadius.circular(12),

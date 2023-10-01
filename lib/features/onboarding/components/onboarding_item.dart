@@ -2,7 +2,6 @@ import 'package:fit_food/components/shared/app_text.dart';
 import 'package:fit_food/features/onboarding/data/models/onboarding_info_model.dart';
 import 'package:flutter/material.dart';
 
-
 class OnboardingItem extends StatefulWidget {
   const OnboardingItem({super.key, required this.onboardingInfo});
 
@@ -15,22 +14,24 @@ class OnboardingItem extends StatefulWidget {
 class _OnboardingItemState extends State<OnboardingItem> {
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Column(
       children: [
         Expanded(child: Image.asset(widget.onboardingInfo.imageDir)),
-        const SizedBox(
-          height: 27,
+        SizedBox(
+          height: height * 0.027,
         ),
         AppTXT(
           text: widget.onboardingInfo.tittle,
           fontWeight: FontWeight.w700,
           fontSize: 40,
         ),
-        const SizedBox(
-          height: 8,
+        SizedBox(
+          height: height * 0.008,
         ),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          padding: EdgeInsets.symmetric(horizontal: width * 0.016),
           child: AppTXT(
               textAlign: TextAlign.center,
               fontSize: 15,

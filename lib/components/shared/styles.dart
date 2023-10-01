@@ -33,7 +33,7 @@ TextStyle wlcmText = GoogleFonts.poppins(
 );
 
 TextStyle hintText = GoogleFonts.poppins(
-  fontSize: 16,
+  fontSize: 14,
   fontWeight: FontWeight.w400,
   color: kcTxtColorLight,
 );
