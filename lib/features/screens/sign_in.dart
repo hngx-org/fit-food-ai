@@ -89,7 +89,9 @@ class _SignInState extends State<SignIn> {
               SizedBox(height: height * 0.06),
               AppBTN(
                 title: 'SIGN IN',
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushReplacementNamed(context, '/chats');
+                },
               ),
               SizedBox(height: height * 0.04),
               Center(

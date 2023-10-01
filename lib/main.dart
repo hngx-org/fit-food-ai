@@ -1,3 +1,4 @@
+import 'package:fit_food/features/chats/chat_screen.dart';
 import 'package:fit_food/features/onboarding/view/splash_screen.dart';
 import 'package:fit_food/features/screens/sign_in.dart';
 import 'package:fit_food/features/screens/sign_up.dart';
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/signIn': (ctx) => const SignIn(),
         '/signUp': (ctx) => const SignUp(),
+        '/chats': (ctx) => const ChatScreen(),
       },
     );
   }

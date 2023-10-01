@@ -1,12 +1,15 @@
 import 'package:fit_food/components/widgets/chat_log.dart';
 import 'package:flutter/material.dart';
+import 'package:iconly/iconly.dart';
 
-import '../../../components/shared/app_colors.dart';
-import '../../../components/shared/styles.dart';
-import '../data/models/chat_screen_model.dart';
+import '../../components/shared/app_colors.dart';
+import '../../components/shared/styles.dart';
+import '../onboarding/data/models/chat_screen_model.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
+
+  static const routeName = '/chats';
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -66,8 +69,8 @@ class _ChatScreenState extends State<ChatScreen> {
     super.dispose();
   }
 
-  _sendMessage(TextEditingController controller){
-    if(controller.text.isNotEmpty){
+  _sendMessage(TextEditingController controller) {
+    if (controller.text.isNotEmpty) {
       setState(() {
         testMessages.add(ChatMessage(
             sender: "user",
@@ -79,6 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
       FocusScope.of(context).unfocus();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -171,8 +175,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       onTap: () {
                         _sendMessage(messageController);
                       },
-                      child: ImageIcon(AssetImage("assets/send.png"),
-                          color: Colors.white),
+                      child: const Icon(IconlyLight.send, color: Colors.white),
                     ),
                   ),
                 )
