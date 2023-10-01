@@ -20,9 +20,9 @@ class AppBTN extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(12),
       splashColor: kcRedColorLight,
-      child: Container(
+      child: Ink(
         width: double.infinity,
-        height: height * 0.06,
+        height: height * 0.065,
         decoration: BoxDecoration(
           color: kcBtnColor,
           borderRadius: BorderRadius.circular(12),

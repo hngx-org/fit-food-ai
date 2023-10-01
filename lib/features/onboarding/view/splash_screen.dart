@@ -1,6 +1,8 @@
 import 'package:fit_food/features/onboarding/view/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../../components/shared/app_colors.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -21,6 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kcWhiteColor,
       body: Center(
         child: Image.asset('assets/appLogo.png'),
       ),

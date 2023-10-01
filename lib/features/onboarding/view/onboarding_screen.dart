@@ -29,26 +29,32 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
+      backgroundColor: kcWhiteColor,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(18.0),
           child: Column(
             children: [
               Expanded(
-                  flex: 1,
-                  child: Align(
-                    alignment: Alignment.topRight,
-                    child: TextButton(
-                        style: TextButton.styleFrom(
-                            foregroundColor: kcTxtColorDark),
-                        onPressed: () {},
-                        child: Text(
-                          'SKIP',
-                          style: btnText.copyWith(
-                              color: kcTxtColorDark, fontSize: 18),
-                        )),
-                  )),
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.topRight,
+                  child: TextButton(
+                    style:
+                        TextButton.styleFrom(foregroundColor: kcTxtColorDark),
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/signIn');
+                    },
+                    child: Text(
+                      'SKIP',
+                      style:
+                          btnText.copyWith(color: kcTxtColorDark, fontSize: 18),
+                    ),
+                  ),
+                ),
+              ),
               Expanded(
                   flex: 3,
                   child: PageView.builder(
@@ -57,8 +63,8 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     itemBuilder: (context, index) => OnboardingItem(
                         onboardingInfo: OnboardingInfoModel.defaultInfo[index]),
                   )),
-              const SizedBox(
-                height: 18,
+              SizedBox(
+                height: height * 0.018,
               ),
               Center(
                   child: OnboardingIndicator(
@@ -71,12 +77,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       firstChild: const SizedBox(),
                       secondChild: AppBTN(
                         title: 'CONTINUE',
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.pushReplacementNamed(context, '/signIn');
+                        },
                       ),
-                      crossFadeState:
-                          _currentPage+1 == OnboardingInfoModel.defaultInfo.length
-                              ? CrossFadeState.showSecond
-                              : CrossFadeState.showFirst,
+                      crossFadeState: _currentPage + 1 ==
+                              OnboardingInfoModel.defaultInfo.length
+                          ? CrossFadeState.showSecond
+                          : CrossFadeState.showFirst,
                       secondCurve: Curves.easeIn,
                       duration: const Duration(milliseconds: 300)),
                 ),
