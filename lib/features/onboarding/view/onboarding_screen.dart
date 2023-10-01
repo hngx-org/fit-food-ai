@@ -71,7 +71,14 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       firstChild: const SizedBox(),
                       secondChild: AppBTN(
                         title: 'CONTINUE',
-                        onTap: () {},
+                        onTap: () {
+                          //Change the second route to the sign in or sign up route
+
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(builder: (context) => SecondRoute()),
+                          // );
+                        },
                       ),
                       crossFadeState:
                           _currentPage+1 == OnboardingInfoModel.defaultInfo.length
