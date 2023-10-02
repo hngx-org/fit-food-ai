@@ -44,29 +44,26 @@ class ChatLog extends StatelessWidget {
                   ],
                 )
               : Container(
-                height: chatMessage.sender == "user" &&
-                        chatMessage.text.length > 30
-                    ? 600
-                    : 50,
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.vertical,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(chatMessage.text),
-                      // Align(
-                      //   alignment: Alignment.bottomRight,
-                      //   child: Text(
-                      //     formattedDate,
-                      //     style: btnText.copyWith(
-                      //         color: kcBtnColor, fontSize: 12),
-                      //     textAlign: TextAlign.right,
-                      //   ),
-                      // ),
-                    ],
+                  height: 400,
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.vertical,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(chatMessage.text),
+                        // Align(
+                        //   alignment: Alignment.bottomRight,
+                        //   child: Text(
+                        //     formattedDate,
+                        //     style: btnText.copyWith(
+                        //         color: kcBtnColor, fontSize: 12),
+                        //     textAlign: TextAlign.right,
+                        //   ),
+                        // ),
+                      ],
+                    ),
                   ),
                 ),
-              ),
         ),
       ],
     );

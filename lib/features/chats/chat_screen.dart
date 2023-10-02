@@ -35,7 +35,7 @@ class _ChatScreenState extends State<ChatScreen> {
         timestamp: DateTime.now()),
     ChatMessage(
         text:
-            "The world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incompletevv,v,v,vvhe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incomplete",
+            "The world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,hee world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,hee world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,hee world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world isomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world isomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world isomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world isomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world isomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incompletevv,v,v,vvhe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incomplete",
         sender: "",
         timestamp: DateTime.now()),
     ChatMessage(
@@ -121,7 +121,7 @@ class _ChatScreenState extends State<ChatScreen> {
             Expanded(
               child: ListView.builder(
                   itemCount: testMessages.length,
-                  itemBuilder: (contet, index) {
+                  itemBuilder: (context, index) {
                     return Column(
                       children: [
                         SizedBox(
