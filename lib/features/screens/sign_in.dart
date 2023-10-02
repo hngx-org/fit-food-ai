@@ -69,7 +69,7 @@ class _SignInState extends State<SignIn> {
                     });
                   },
                   child: Icon(
-                    _passwordVisible ? IconlyLight.show : IconlyLight.hide,
+                    _passwordVisible ? IconlyLight.hide : IconlyLight.show,
                     color: kcChatRcvdColor,
                   ),
                 ),

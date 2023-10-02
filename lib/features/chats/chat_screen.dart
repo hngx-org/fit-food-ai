@@ -91,14 +91,14 @@ class _ChatScreenState extends State<ChatScreen> {
         automaticallyImplyLeading: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.settings_outlined),
+            onPressed: () => Navigator.pushNamed(context, '/settings'),
+            icon: const Icon(
+              IconlyLight.setting,
+              color: kcTxtColorDark,
+            ),
           ),
         ],
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () {},
-        ),
+        leading: Image.asset(smallLogo),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -114,7 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         child: Column(
           children: [
             Expanded(

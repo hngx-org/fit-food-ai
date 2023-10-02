@@ -84,7 +84,7 @@ class _SignUpState extends State<SignUp> {
                     });
                   },
                   child: Icon(
-                    _passwordVisible ? IconlyLight.show : IconlyLight.hide,
+                    _passwordVisible ? IconlyLight.hide : IconlyLight.show,
                     color: kcChatRcvdColor,
                   ),
                 ),
@@ -104,7 +104,7 @@ class _SignUpState extends State<SignUp> {
                     });
                   },
                   child: Icon(
-                    _visibility ? IconlyLight.show : IconlyLight.hide,
+                    _visibility ? IconlyLight.hide : IconlyLight.show,
                     color: kcChatRcvdColor,
                   ),
                 ),
