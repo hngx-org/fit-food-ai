@@ -1,5 +1,7 @@
+import 'package:fit_food/features/settings/presentation/widgets/image_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../../components/shared/styles.dart';
 import '../../../components/shared/app_colors.dart';
@@ -16,12 +18,18 @@ class EditProfile extends StatefulWidget {
 }
 
 class _EditProfileState extends State<EditProfile> {
-  bool _visibility = true;
+  //Image file to be uploaded
+  XFile? selectedImage;
+  String path = ''; //path of the selectedImage
 
-  bool _passwordVisible = true;
+  bool _passwordVisible = true; //password
+  bool _visibility = true; //confirm password
 
   @override
   Widget build(BuildContext context) {
+    final uImage = ModalRoute.of(context)!.settings.arguments;
+
+    path = uImage.toString();
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
@@ -55,15 +63,21 @@ class _EditProfileState extends State<EditProfile> {
               Stack(
                 clipBehavior: Clip.none,
                 children: [
-                  const CircleAvatar(
+                  CircleAvatar(
                     radius: 60,
-                    backgroundImage: AssetImage(userImage),
+                    backgroundImage: selectedImage != null
+                        ? AssetImage(
+                            '${XFile(selectedImage!.path)}',
+                          )
+                        : const AssetImage(userImage),
                   ),
                   Positioned(
                     left: width * 0.23,
                     top: height * 0.09,
                     child: GestureDetector(
-                      onTap: () {},
+                      onTap: () async {
+                        selectImage(context);
+                      },
                       child: Container(
                         width: 50,
                         height: 35,
