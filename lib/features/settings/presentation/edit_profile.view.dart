@@ -83,10 +83,6 @@ class _EditProfileState extends State<EditProfile> {
                 'Victor Benita D.',
                 style: btnText.copyWith(color: kcTxtColorDark),
               ),
-              Text(
-                'victorbenita3421@hngx.org',
-                style: hintText,
-              ),
               SizedBox(height: height * 0.03),
               AppTXTField(
                 hint: 'Victor Benita D.',
