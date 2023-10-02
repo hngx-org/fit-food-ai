@@ -91,12 +91,12 @@ class _ChatScreenState extends State<ChatScreen> {
         automaticallyImplyLeading: true,
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () => Navigator.pushNamed(context, '/settings'),
             icon: Icon(IconlyLight.setting),
           ),
         ],
         leading: IconButton(
-          icon: Image.asset("assets/appLogo.png"),
+          icon: Image.asset(smallLogo),
           onPressed: () {},
         ),
         title: Column(
@@ -114,7 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         child: Column(
           children: [
             Expanded(
