@@ -1,10 +1,10 @@
-import 'package:fit_food/components/widgets/chat_log.dart';
+import 'package:fit_food/features/chats/widget/chat_log.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
 import '../../components/shared/app_colors.dart';
 import '../../components/shared/styles.dart';
-import '../onboarding/data/models/chat_screen_model.dart';
+import 'data/models/chat_screen_model.dart';
 
 class ChatScreen extends StatefulWidget {
   const ChatScreen({Key? key}) : super(key: key);
@@ -34,7 +34,8 @@ class _ChatScreenState extends State<ChatScreen> {
         sender: "user",
         timestamp: DateTime.now()),
     ChatMessage(
-        text: "The world is only incomplete",
+        text:
+            "The world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incomplete,he world is only incompletehe world is only incompletevv,v,v,vvhe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incompletehe world is only incomplete",
         sender: "",
         timestamp: DateTime.now()),
     ChatMessage(
@@ -96,7 +97,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
         leading: IconButton(
-          icon: Image.asset(smallLogo),
+          icon: Image.asset(smallLogo, color: kcBtnColor),
           onPressed: () {},
         ),
         title: Column(
@@ -134,31 +135,36 @@ class _ChatScreenState extends State<ChatScreen> {
             Row(
               children: [
                 Expanded(
-                  flex: 3,
-                  child: TextField(
-                    // controller: messageController,
-                    controller: messageController,
-                    decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kcBtnColor, width: .5),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                  flex: 4,
+                  child: Container(
+                    height: 60,
+                    child: TextField(
+                      // controller: messageController,
+                      controller: messageController,
+                      decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 20),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: kcBtnColor, width: .5),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
                           ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kcBtnColor, width: .5),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                          enabledBorder: OutlineInputBorder(
+                            borderSide:
+                                BorderSide(color: kcBtnColor, width: .5),
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
                           ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(10),
+                            ),
                           ),
-                        ),
-                        hintText: 'Type a message'),
+                          hintText: 'Type a message'),
+                    ),
                   ),
                 ),
                 Expanded(
@@ -167,15 +173,19 @@ class _ChatScreenState extends State<ChatScreen> {
                       _sendMessage(messageController);
                     },
                     child: Container(
-                      margin: const EdgeInsets.only(left: 30),
-                      padding: const EdgeInsets.all(20),
+                      height: 60,
+                      margin: const EdgeInsets.only(left: 10),
                       decoration: const BoxDecoration(
                         color: kcBtnColor,
                         borderRadius: BorderRadius.all(
                           Radius.circular(10),
                         ),
                       ),
-                      child: const Icon(IconlyLight.send, color: Colors.white),
+                      child: const Icon(
+                        IconlyLight.send,
+                        size: 30,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 )
