@@ -1,13 +1,14 @@
-import 'package:fit_food/components/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'features/authentication/data/repository/auth_repository_impl.dart';
+import 'features/authentication/viewmodel/auth_view_model.dart';
+import 'features/authentication/views/sign_in.dart';
 import 'features/authentication/views/sign_up.dart';
 
 import 'features/chats/chat_screen.dart';
 import 'features/onboarding/view/splash_screen.dart';
-import 'features/screens/sign_in.dart';
-import 'features/screens/sign_up.dart';
+
 import 'features/settings/presentation/edit_profile.view.dart';
 import 'features/settings/presentation/settings_view.dart';
 
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
     '/settings': (ctx) => const SettingsScreen(),
     '/edit-profile': (ctx) => const EditProfile(),
     },
-        },
+
       ),
     );
   }
