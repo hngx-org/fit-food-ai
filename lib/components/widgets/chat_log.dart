@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../shared/app_colors.dart';
+import '../shared/styles.dart';
 
 class ChatLog extends StatelessWidget {
   const ChatLog({Key? key, required this.chatMessage}) : super(key: key);
@@ -34,6 +35,7 @@ class ChatLog extends StatelessWidget {
                 alignment: Alignment.bottomRight,
                 child: Text(
                   formattedDate,
+                  style: btnText.copyWith(color: kcBtnColor, fontSize: 12),
                   textAlign: TextAlign.right,
                 ),
               ),

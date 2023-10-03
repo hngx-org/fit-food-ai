@@ -1,13 +1,15 @@
-import 'package:fit_food/features/authentication/data/repository/auth_repository_impl.dart';
-import 'package:fit_food/features/authentication/viewmodel/auth_view_model.dart';
-import 'package:fit_food/features/chats/chat_screen.dart';
-import 'package:fit_food/features/onboarding/view/splash_screen.dart';
-import 'package:fit_food/features/authentication/views/sign_in.dart';
-
+import 'package:fit_food/components/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'features/authentication/views/sign_up.dart';
+
+import 'features/chats/chat_screen.dart';
+import 'features/onboarding/view/splash_screen.dart';
+import 'features/screens/sign_in.dart';
+import 'features/screens/sign_up.dart';
+import 'features/settings/presentation/edit_profile.view.dart';
+import 'features/settings/presentation/settings_view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,6 +39,9 @@ class MyApp extends StatelessWidget {
           '/signIn': (ctx) => const SignIn(),
           '/signUp': (ctx) => const SignUp(),
           '/chats': (ctx) => const ChatScreen(),
+    '/settings': (ctx) => const SettingsScreen(),
+    '/edit-profile': (ctx) => const EditProfile(),
+    },
         },
       ),
     );

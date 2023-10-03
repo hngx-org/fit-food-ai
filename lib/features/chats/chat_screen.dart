@@ -91,12 +91,12 @@ class _ChatScreenState extends State<ChatScreen> {
         automaticallyImplyLeading: true,
         actions: [
           IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.settings_outlined),
+            onPressed: () => Navigator.pushNamed(context, '/settings'),
+            icon: Icon(IconlyLight.setting),
           ),
         ],
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: Image.asset(smallLogo),
           onPressed: () {},
         ),
         title: Column(
@@ -162,19 +162,19 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    margin: const EdgeInsets.only(left: 30),
-                    padding: const EdgeInsets.all(20),
-                    decoration: const BoxDecoration(
-                      color: kcBtnColor,
-                      borderRadius: BorderRadius.all(
-                        Radius.circular(10),
+                  child: InkWell(
+                    onTap: () {
+                      _sendMessage(messageController);
+                    },
+                    child: Container(
+                      margin: const EdgeInsets.only(left: 30),
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                        color: kcBtnColor,
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(10),
+                        ),
                       ),
-                    ),
-                    child: InkWell(
-                      onTap: () {
-                        _sendMessage(messageController);
-                      },
                       child: const Icon(IconlyLight.send, color: Colors.white),
                     ),
                   ),
