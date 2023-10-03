@@ -1,4 +1,3 @@
-
 import 'package:fit_food/components/shared/app_colors.dart';
 import 'package:fit_food/components/shared/styles.dart';
 import 'package:fit_food/components/widgets/app_button.dart';
@@ -196,5 +195,4 @@ class _SignUpState extends State<SignUp> {
           name: _nameController.text);
     }
   }
-
 }

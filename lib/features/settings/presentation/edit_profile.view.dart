@@ -2,7 +2,6 @@ import 'package:fit_food/features/settings/presentation/widgets/image_utils.dart
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../components/shared/styles.dart';
 import '../../../components/shared/app_colors.dart';
 import '../../../components/widgets/app_button.dart';

@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:either_dart/src/either.dart';
 import 'package:fit_food/common/models/app_error.dart';
+import 'package:fit_food/common/models/app_user.dart';
 import 'package:fit_food/core/helpers/package_consuming_helper.dart';
 import 'package:hng_authentication/authentication.dart';
 import 'iauth_repository.dart';
@@ -10,12 +11,11 @@ class AuthRepositoryImpl extends IAuthRepository {
   final _auth = Authentication();
 
   @override
-  Future<Either<AppError, User>> login(
+  Future<Either<AppError, AppUser>> login(
       {required String email, required String password}) async {
-
-    return PackageConsumingHelper.makeRequest<AppError, User>(
+    return PackageConsumingHelper.makeRequest<AppError, AppUser>(
         () => _auth.signIn(email, password), successResponse: (response) {
-      return (response as User);
+      return AppUser.fromAuthUser((response as User));
     }, errorResponse: (error) {
       log(error.message);
       return error;
@@ -23,12 +23,12 @@ class AuthRepositoryImpl extends IAuthRepository {
   }
 
   @override
-  Future<Either<AppError, User>> signUp(
+  Future<Either<AppError, AppUser>> signUp(
       {required String email, required String name, required String password}) {
-    return PackageConsumingHelper.makeRequest<AppError, User>(
+    return PackageConsumingHelper.makeRequest<AppError, AppUser>(
         () => _auth.signUp(email, name, password), successResponse: (response) {
       log(response.runtimeType.toString());
-      return response;
+      return AppUser.fromAuthUser(response);
     }, errorResponse: (error) {
       log(error.message);
       return error;

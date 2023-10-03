@@ -1,10 +1,11 @@
-import 'package:hng_authentication/src/models/user.dart';
+import 'package:fit_food/common/models/app_user.dart';
+
 
 /// Responsible for login and signup state
 class AuthState {
   final bool isLoading;
   final String? error;
-  final User? data;
+  final AppUser? data;
 
   AuthState({required this.isLoading, required this.error, required this.data});
 
