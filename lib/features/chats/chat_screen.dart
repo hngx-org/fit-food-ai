@@ -1,7 +1,12 @@
+import 'package:fit_food/common/base/base_view_model.dart';
+import 'package:fit_food/common/models/app_user.dart';
+import 'package:fit_food/common/viewmodels/user_view_model.dart';
 import 'package:fit_food/components/widgets/chat_log.dart';
+import 'package:fit_food/features/chats/view_model/chat_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
-
+import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../components/shared/app_colors.dart';
 import '../../components/shared/styles.dart';
 import '../onboarding/data/models/chat_screen_model.dart';
@@ -63,21 +68,18 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is removed from the
-    // widget tree.
     messageController.dispose();
     super.dispose();
   }
 
   _sendMessage(TextEditingController controller) {
     if (controller.text.isNotEmpty) {
-      setState(() {
-        testMessages.add(ChatMessage(
-            sender: "user",
-            text: controller.text.toString(),
-            timestamp: DateTime.now()));
-        controller.text = "";
-      });
+      Provider.of<ChatViewModel>(context, listen: false).sendMessage(
+          ChatMessage(
+              sender: "user",
+              text: controller.text.toString(),
+              timestamp: DateTime.now()));
+
       controller.clear();
       FocusScope.of(context).unfocus();
     }
@@ -89,10 +91,12 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         titleSpacing: 0,
         automaticallyImplyLeading: true,
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
         actions: [
           IconButton(
             onPressed: () => Navigator.pushNamed(context, '/settings'),
-            icon: Icon(IconlyLight.setting),
+            icon: const Icon(IconlyLight.setting),
           ),
         ],
         leading: IconButton(
@@ -106,84 +110,100 @@ class _ChatScreenState extends State<ChatScreen> {
               "Good Morning",
               style: smallText.copyWith(color: kcTxtColorDark, fontSize: 12),
             ),
-            Text(
-              "User name",
-              style: btnText.copyWith(color: kcTxtColorDark, fontSize: 16),
-            ),
+            AppUiStateBinding.bind<UserViewModel, AppUser?>(
+                value: (vm) => vm.user,
+                to: (context, state, vm) {
+                  return Text(
+                    state?.name ?? "Guest",
+                    style:
+                        btnText.copyWith(color: kcTxtColorDark, fontSize: 16),
+                  );
+                }),
           ],
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                  itemCount: testMessages.length,
-                  itemBuilder: (contet, index) {
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: 20,
-                        ),
-                        ChatLog(chatMessage: testMessages[index]),
-                      ],
-                    );
-                  }),
-            ),
-            Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: TextField(
-                    // controller: messageController,
-                    controller: messageController,
-                    decoration: InputDecoration(
-                        contentPadding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kcBtnColor, width: .5),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
+      body: Consumer<ChatViewModel>(builder: (context, state, widget) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
+          child: Column(
+            children: [
+              Expanded(
+                child: ScrollablePositionedList.builder(
+                    itemCount: state.messages.length,
+                    itemScrollController: state.scrollController,
+                    reverse: true,
+                    itemBuilder: (context, index) {
+                      return Column(
+                        children: [
+                          const SizedBox(
+                            height: 20,
                           ),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: kcBtnColor, width: .5),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(10),
-                          ),
-                        ),
-                        hintText: 'Type a message'),
-                  ),
-                ),
-                Expanded(
-                  child: InkWell(
-                    onTap: () {
-                      _sendMessage(messageController);
-                    },
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 30),
-                      padding: const EdgeInsets.all(20),
-                      decoration: const BoxDecoration(
-                        color: kcBtnColor,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        ),
+                          ChatLog(
+                              chatMessage:
+                                  state.messages.reversed.toList()[index]),
+                        ],
+                      );
+                    }),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: TextField(
+                        // controller: messageController,
+                        controller: messageController,
+                        decoration: const InputDecoration(
+                            contentPadding: EdgeInsets.symmetric(
+                                horizontal: 18, vertical: 18),
+                            focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: kcBtnColor, width: .5),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: kcBtnColor, width: .5),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(10),
+                              ),
+                            ),
+                            hintText: 'Type a message'),
                       ),
-                      child: const Icon(IconlyLight.send, color: Colors.white),
                     ),
-                  ),
-                )
-              ],
-            ),
-          ],
-        ),
-      ),
+                    InkWell(
+                      onTap: () {
+                        _sendMessage(messageController);
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        margin: const EdgeInsets.only(left: 6),
+                        padding: const EdgeInsets.all(16),
+                        decoration: const BoxDecoration(
+                          color: kcBtnColor,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        child:
+                            const Icon(IconlyLight.send, color: Colors.white),
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      }),
     );
   }
 }
