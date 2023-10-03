@@ -1,3 +1,5 @@
+import 'package:fit_food/Routes/routes.dart';
+import 'package:fit_food/features/screens/payment_upgrade.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -94,24 +96,28 @@ class SettingsScreen extends StatelessWidget {
                   color: kcBtnColor,
                 ),
                 title: Text(
-                  'Subscription',
+                  'Free User',
                   style: inputText,
                 ),
                 trailing: Container(
                   height: height * 0.04,
-                  width: width * 0.3,
+                  width: width * 0.4,
                   decoration: BoxDecoration(
                     color: kcChatRcvdColor,
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Center(
                     child: Text(
-                      'Free Plan',
+                      'Upgrade To Pro',
                       style: nameText,
                     ),
                   ),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => UpgradePlan(), // Replace with the actual screen you want to navigate to
+                  ));
+                },
               ),
               SizedBox(height: height * 0.01),
               AppTILE(

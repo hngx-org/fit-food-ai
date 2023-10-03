@@ -1,4 +1,5 @@
 import 'package:fit_food/components/shared/app_colors.dart';
+import 'package:fit_food/features/screens/payment_upgrade.dart';
 import 'package:flutter/material.dart';
 
 import 'features/chats/chat_screen.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: 'Poppins',
       ),
-      home: const SplashScreen(),
+      home: const UpgradePlan(),
       routes: {
         '/signIn': (ctx) => const SignIn(),
         '/signUp': (ctx) => const SignUp(),
