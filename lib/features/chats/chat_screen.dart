@@ -96,7 +96,7 @@ class _ChatScreenState extends State<ChatScreen> {
           ),
         ],
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {},
         ),
         title: Column(
@@ -114,7 +114,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
       ),
       body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
         child: Column(
           children: [
             Expanded(
@@ -123,7 +123,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   itemBuilder: (contet, index) {
                     return Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 20,
                         ),
                         ChatLog(chatMessage: testMessages[index]),
@@ -138,7 +138,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   child: TextField(
                     // controller: messageController,
                     controller: messageController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                         contentPadding:
                             EdgeInsets.symmetric(horizontal: 20, vertical: 20),
                         focusedBorder: OutlineInputBorder(
