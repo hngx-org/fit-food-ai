@@ -11,7 +11,9 @@ class AuthViewModel extends BaseViewModel {
 
   AuthState _loginState = AuthState.initial();
   AuthState _signUpState = AuthState.initial();
+
   AuthState get loginState => _loginState;
+
   AuthState get signUpState => _signUpState;
 
   set loginState(AuthState value) {
@@ -26,7 +28,6 @@ class AuthViewModel extends BaseViewModel {
 
   Future<void> loginUser(
       {required String email, required String password}) async {
-
     _loginState = _loginState.copyWithLoading();
     navigator.dispatch(LoginLoading());
     var response = await authRepository.login(email: email, password: password);
@@ -37,10 +38,9 @@ class AuthViewModel extends BaseViewModel {
       return _loginState =
           AuthState(isLoading: false, error: left.message, data: null);
     }, (right) {
-
       /// Dispatching Success events
       navigator.dispatch(DismissModalEvent());
-      navigator.dispatch(LoginSuccess());
+      navigator.dispatch(LoginSuccess(right));
 
       return _loginState =
           AuthState(isLoading: false, error: null, data: right);
