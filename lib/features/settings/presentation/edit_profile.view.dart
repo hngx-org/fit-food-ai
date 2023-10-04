@@ -96,12 +96,12 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 SizedBox(height: height * 0.02),
                 Text(
-                  'Victor Benita D.',
+                  state.user?.name ?? 'Victor Benita D.',
                   style: btnText.copyWith(color: kcTxtColorDark),
                 ),
                 SizedBox(height: height * 0.03),
                 AppTXTField(
-                  hint: 'Victor Benita D.',
+                  hint: state.user?.name ?? 'Victor Benita D.',
                   leading: const Icon(
                     IconlyLight.profile,
                     color: kcChatRcvdColor,
@@ -109,7 +109,7 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 SizedBox(height: height * 0.035),
                 AppTXTField(
-                  hint: 'victorbenita3421@hngx.org',
+                  hint: state.user?.name ?? 'victorbenita3421@hngx.org',
                   leading: const Icon(
                     IconlyLight.message,
                     color: kcChatRcvdColor,
