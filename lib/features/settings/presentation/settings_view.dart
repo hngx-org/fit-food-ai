@@ -102,7 +102,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   trailing: Container(
                     height: height * 0.04,
-                    width: width * 0.3,
+                    width: width * 0.4,
                     decoration: BoxDecoration(
                       color: kcChatRcvdColor,
                       borderRadius: BorderRadius.circular(12),
