@@ -97,7 +97,7 @@ class SettingsScreen extends StatelessWidget {
                     color: kcBtnColor,
                   ),
                   title: Text(
-                    'Subscription',
+                    'Free User',
                     style: inputText,
                   ),
                   trailing: Container(
@@ -109,12 +109,14 @@ class SettingsScreen extends StatelessWidget {
                     ),
                     child: Center(
                       child: Text(
-                        'Free Plan',
+                        'Upgrade Now',
                         style: nameText,
                       ),
                     ),
                   ),
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/upgradePlan');
+                  },
                 ),
                 SizedBox(height: height * 0.01),
                 AppTILE(
