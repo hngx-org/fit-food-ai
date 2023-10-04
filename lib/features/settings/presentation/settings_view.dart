@@ -110,12 +110,14 @@ class SettingsScreen extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'Upgrade Now',
-                        style: nameText,
+                        style: nameText.copyWith(
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                   ),
                   onTap: () {
-                    Navigator.pushReplacementNamed(context, '/upgradePlan');
+                    Navigator.pushNamed(context, '/upgradePlan');
                   },
                 ),
                 SizedBox(height: height * 0.01),

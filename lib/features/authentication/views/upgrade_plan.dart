@@ -1,4 +1,5 @@
 import 'package:fit_food/components/shared/styles.dart';
+import 'package:fit_food/components/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 
@@ -25,6 +26,9 @@ class _UpgradePlanState extends State<UpgradePlan> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -36,51 +40,53 @@ class _UpgradePlanState extends State<UpgradePlan> {
             color: kcTxtColorDark,
           ),
         ),
-        title: Text('Fit-Food Pro',
-          style: wlcmText,
+        centerTitle: true,
+        title: Text(
+          'Upgrade Plan',
+          style: inputText,
         ),
       ),
+      backgroundColor: kcWhiteColor,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const Center(
-              child: Text('Ditch the limit!',
-                style: TextStyle(
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 28,
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: width * 0.05),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Ditch the limit!',
+                style: btnText.copyWith(
+                  fontSize: 25,
+                  color: kcTxtColorDark,
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Container(
-                height: 300,
-                width: 300,
+              SizedBox(
+                height: height * 0.02,
+              ),
+              Container(
+                height: height * 0.35,
+                width: width,
                 decoration: BoxDecoration(
                   color: kcChatRcvdColor,
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
+                padding: const EdgeInsets.all(15),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text(
-                        "Fit-Food Pro",
-                        style: TextStyle(
-                          fontSize: 18.0,
-                          fontWeight: FontWeight.bold,
-                          color: kcTxtColorDark,
-                        ),
-                      ),
+                    Text(
+                      "Fit-Food Pro",
+                      style: nameText,
                     ),
                     Expanded(
                       child: ListView.builder(
                         itemCount: yourItemList.length,
                         itemBuilder: (context, index) {
                           return ListTile(
-                            leading: Icon(Icons.check),
+                            leading: const Icon(
+                              Icons.check,
+                              color: kcTxtColorDark,
+                            ),
                             title: Text(yourItemList[index]),
                           );
                         },
@@ -89,34 +95,34 @@ class _UpgradePlanState extends State<UpgradePlan> {
                   ],
                 ),
               ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Text('Select Plan',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontFamily: 'Poppins',
-                  fontSize: 17,
-                ),
+              SizedBox(
+                height: height * 0.03,
               ),
-            ),
-            Container(
-                height: 200,
-                width: 300,
+              Text(
+                'Select Plan',
+                style: nameText,
+              ),
+              SizedBox(
+                height: height * 0.01,
+              ),
+              Container(
+                height: height * 0.2,
+                width: width,
                 decoration: BoxDecoration(
                   color: kcChatRcvdColor,
                   borderRadius: BorderRadius.circular(10.0),
                 ),
-              child: Padding(
-                padding: const EdgeInsets.only(top: 8.0),
+                padding: const EdgeInsets.all(15),
                 child: ListView.builder(
                   itemCount: 2, // Two options: Monthly and Yearly
                   itemBuilder: (context, index) {
-                    final planName = index == 0 ? 'Monthly Plan' : 'Yearly Plan';
-                    final planCost = index == 0 ? '\$3 monthly' : '\$30 anually';
+                    final planName =
+                        index == 0 ? 'Monthly Plan' : 'Yearly Plan';
+                    final planCost =
+                        index == 0 ? '\$3 monthly' : '\$30 anually';
 
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                      padding: const EdgeInsets.all(10.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -133,54 +139,31 @@ class _UpgradePlanState extends State<UpgradePlan> {
                               ),
                               Text(
                                 planName,
-                                style: const TextStyle(
-                                  fontSize: 15.0,
-                                  fontWeight: FontWeight.w600,
-                                  color: kcTxtColorDark,
-                                ),
+                                style: infoText,
                               ),
                             ],
                           ),
                           Text(
                             planCost,
-                            style: const TextStyle(
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w600,
-                              color: kcTxtColorDark,
+                            style: smallText.copyWith(
+                              fontSize: 13,
                             ),
                           ),
                         ],
                       ),
                     );
                   },
-                  ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.only(top: 10.0),
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ButtonStyle(
-                  backgroundColor: MaterialStateProperty.all<Color>(kcBtnColor),
-                  minimumSize: MaterialStateProperty.all<Size>(Size(300, 48)),
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0),
-                    ),
-                  ),
-                ),
-                child: const Text('Upgrade Now',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w600,
-                  color: kcWhiteColor,
-                ),
                 ),
               ),
-            )
-
-          ],
+              SizedBox(
+                height: height * 0.035,
+              ),
+              AppBTN(
+                title: 'UPGRADE NOW',
+                onTap: () {},
+              ),
+            ],
+          ),
         ),
       ),
     );
