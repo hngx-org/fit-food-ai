@@ -1,7 +1,7 @@
 import 'package:fit_food/components/shared/styles.dart';
-import 'package:fit_food/components/widgets/app_button.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
+import 'package:in_app_payment/in_app_payment.dart';
 
 import '../../../components/shared/app_colors.dart';
 
@@ -15,7 +15,13 @@ class UpgradePlan extends StatefulWidget {
 }
 
 class _UpgradePlanState extends State<UpgradePlan> {
-  int? _selectedPlanIndex;
+  String _selectedPlan = '';
+
+  void checkedPlan(String value) {
+    setState(() {
+      _selectedPlan = value;
+    });
+  }
 
   List<String> yourItemList = [
     "Unlimited prompts",
@@ -26,6 +32,12 @@ class _UpgradePlanState extends State<UpgradePlan> {
 
   @override
   Widget build(BuildContext context) {
+    var amount = _selectedPlan.substring(
+      0,
+      _selectedPlan.indexOf(' '),
+    );
+
+    final planUpgrade = HNGPay();
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
 
@@ -130,11 +142,9 @@ class _UpgradePlanState extends State<UpgradePlan> {
                             children: [
                               Radio(
                                 value: index,
-                                groupValue: _selectedPlanIndex,
+                                groupValue: _selectedPlan,
                                 onChanged: (value) {
-                                  setState(() {
-                                    _selectedPlanIndex = value;
-                                  });
+                                  checkedPlan(value as String);
                                 },
                               ),
                               Text(
@@ -158,9 +168,18 @@ class _UpgradePlanState extends State<UpgradePlan> {
               SizedBox(
                 height: height * 0.035,
               ),
-              AppBTN(
-                title: 'UPGRADE NOW',
-                onTap: () {},
+              Center(
+                child: Container(
+                  width: double.infinity,
+                  height: height * 0.065,
+                  decoration: BoxDecoration(
+                    color: kcBtnColor,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: planUpgrade.applePay(
+                    amountToPay: amount,
+                  ),
+                ),
               ),
             ],
           ),
