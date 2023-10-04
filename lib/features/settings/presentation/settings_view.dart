@@ -78,18 +78,7 @@ class SettingsScreen extends StatelessWidget {
                     Navigator.pushNamed(context, '/edit-profile');
                   },
                 ),
-                SizedBox(height: height * 0.01),
-                AppTILE(
-                  leading: const Icon(
-                    IconlyBold.send,
-                    color: kcBtnColor,
-                  ),
-                  title: Text(
-                    'Share App',
-                    style: inputText,
-                  ),
-                  onTap: () {},
-                ),
+
                 SizedBox(height: height * 0.01),
                 AppTILE(
                   leading: const Icon(
@@ -125,6 +114,20 @@ class SettingsScreen extends StatelessWidget {
                     color: kcBtnColor,
                   ),
                   title: Text(
+                    'Clear chat history',
+                    style: inputText,
+                  ),
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/signIn');
+                  },
+                ),
+                SizedBox(height: height * 0.01),
+                AppTILE(
+                  leading: const Icon(
+                    IconlyBold.password,
+                    color: kcBtnColor,
+                  ),
+                  title: Text(
                     'Logout',
                     style: inputText,
                   ),
@@ -132,6 +135,7 @@ class SettingsScreen extends StatelessWidget {
                     Navigator.pushReplacementNamed(context, '/signIn');
                   },
                 ),
+
               ],
             ),
           ),

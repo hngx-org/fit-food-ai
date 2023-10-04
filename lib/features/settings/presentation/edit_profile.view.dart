@@ -158,7 +158,9 @@ class _EditProfileState extends State<EditProfile> {
                 SizedBox(height: height * 0.06),
                 AppBTN(
                   title: 'SAVE NOW',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, '/settings');
+                  },
                 ),
               ],
             ),
