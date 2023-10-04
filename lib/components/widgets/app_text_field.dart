@@ -10,6 +10,7 @@ class AppTXTField extends StatelessWidget {
   final bool obscure;
   final TextInputType? keyboardType;
   final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   AppTXTField({
     super.key,
@@ -19,7 +20,7 @@ class AppTXTField extends StatelessWidget {
     this.onChanged,
     this.controller,
     this.keyboardType,
-    this.obscure = false,
+    this.obscure = false, this.validator,
   });
 
   final txtRadius = OutlineInputBorder(
@@ -38,6 +39,7 @@ class AppTXTField extends StatelessWidget {
       obscureText: obscure,
       keyboardType: keyboardType,
       obscuringCharacter: '*',
+      validator: validator,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(15),
         prefixIcon: leading,
