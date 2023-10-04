@@ -1,6 +1,8 @@
 import 'package:fit_food/common/data/user/user_repository_impl.dart';
 import 'package:fit_food/common/viewmodels/user_view_model.dart';
+import 'package:fit_food/components/shared/app_colors.dart';
 import 'package:fit_food/core/utils/app_utils.dart';
+import 'package:fit_food/features/authentication/views/upgrade_plan.dart';
 import 'package:fit_food/features/chats/view_model/chat_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +44,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: kcBtnColor,
+          ),
           useMaterial3: true,
           fontFamily: 'Poppins',
         ),
@@ -55,6 +59,7 @@ class MyApp extends StatelessWidget {
           '/chats': (ctx) => const ChatScreen(),
           '/settings': (ctx) => const SettingsScreen(),
           '/edit-profile': (ctx) => const EditProfile(),
+          '/upgradePlan': (ctx) => const UpgradePlan(),
         },
       ),
     );
