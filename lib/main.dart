@@ -3,7 +3,6 @@ import 'package:fit_food/features/screens/payment_upgrade.dart';
 import 'package:flutter/material.dart';
 
 import 'features/chats/chat_screen.dart';
-import 'features/onboarding/view/splash_screen.dart';
 import 'features/screens/sign_in.dart';
 import 'features/screens/sign_up.dart';
 import 'features/settings/presentation/edit_profile.view.dart';
@@ -33,6 +32,7 @@ class MyApp extends StatelessWidget {
         '/chats': (ctx) => const ChatScreen(),
         '/settings': (ctx) => const SettingsScreen(),
         '/edit-profile': (ctx) => const EditProfile(),
+        '/upgrade': (ctx) => const UpgradePlan(),
       },
     );
   }

@@ -1,4 +1,4 @@
-import 'package:fit_food/Routes/routes.dart';
+
 import 'package:fit_food/features/screens/payment_upgrade.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -115,7 +115,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 onTap: () {
                   Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => UpgradePlan(), // Replace with the actual screen you want to navigate to
+                    builder: (context) => UpgradePlan(),
                   ));
                 },
               ),
