@@ -98,8 +98,8 @@ class _SignUpState extends State<SignUp> {
                   controller: _passwordController,
                   validator: MultiValidator([
                     RequiredValidator(errorText: "Enter Password"),
-                    MinLengthValidator(6,
-                        errorText: "Password should be up to 6 character"),
+                    MinLengthValidator(8,
+                        errorText: "Password should be up to 8s character"),
                   ]),
                   leading: const Icon(
                     IconlyLight.lock,
@@ -125,8 +125,8 @@ class _SignUpState extends State<SignUp> {
                   onChanged: (val) => setState(() {}),
                   validator: MultiValidator([
                     RequiredValidator(errorText: "Enter Password"),
-                    MinLengthValidator(6,
-                        errorText: "Password should be up to 6 character"),
+                    MinLengthValidator(8,
+                        errorText: "Password should be up to 8 character"),
                     ConfirmPasswordValidator(
                         errorText: 'Password mismatch',
                         comparedPassword: _passwordController.text)

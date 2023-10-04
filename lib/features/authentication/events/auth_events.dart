@@ -20,6 +20,7 @@ class LoginSuccess extends AuthEvent {
     super.navigate(context);
 
     StorageHelper.setBoolean(StorageKeys.isLoggedIn, true);
+    StorageHelper.setString("cookie", user.cookie.toString());
     Provider.of<UserViewModel>(context, listen: false).updateUser(user);
     Navigator.pushReplacementNamed(context, '/chats');
     CustomSnackBar.showSuccess(context, message: "Signed In", action: () {});
@@ -58,9 +59,15 @@ class DismissModalEvent extends AuthEvent {
 }
 
 class SignupSuccess extends AuthEvent {
+  final AppUser user;
+
+  SignupSuccess(this.user);
+
   @override
   Future<void> navigate(BuildContext context) async {
     super.navigate(context);
+    Provider.of<UserViewModel>(context, listen: false).updateUser(user);
+    StorageHelper.setString("cookie", user.cookie.toString());
     Navigator.pushReplacementNamed(context, '/chats');
     CustomSnackBar.showSuccess(context, message: "Signed In", action: () {});
   }

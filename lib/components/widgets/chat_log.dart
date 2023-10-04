@@ -1,4 +1,4 @@
-import 'package:fit_food/features/onboarding/data/models/chat_screen_model.dart';
+import 'package:fit_food/features/chats/models/conversation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

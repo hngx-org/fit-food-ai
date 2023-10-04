@@ -1,6 +1,7 @@
 import 'package:fit_food/common/data/user/user_repository_impl.dart';
 import 'package:fit_food/common/viewmodels/user_view_model.dart';
 import 'package:fit_food/core/utils/app_utils.dart';
+import 'package:fit_food/features/chats/data/repository/chat_repository_impl.dart';
 import 'package:fit_food/features/chats/view_model/chat_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -37,7 +38,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider<UserViewModel>(
             create: (context) => UserViewModel(UserRepositoryImpl())),
         ChangeNotifierProvider<ChatViewModel>(
-            create: (context) => ChatViewModel()),
+            create: (context) => ChatViewModel(ChatRepositoryImpl())),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
