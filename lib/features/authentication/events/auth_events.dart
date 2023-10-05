@@ -5,6 +5,7 @@ import 'package:fit_food/core/constants/storage_keys.dart';
 import 'package:fit_food/core/helpers/storage_helper.dart';
 import 'package:fit_food/core/utils/app_utils.dart';
 import 'package:fit_food/core/utils/custom_snack_bar.dart';
+import 'package:fit_food/features/chats/view/chat_history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -20,8 +21,13 @@ class LoginSuccess extends AuthEvent {
     super.navigate(context);
 
     StorageHelper.setBoolean(StorageKeys.isLoggedIn, true);
+    StorageHelper.setString("cookie", user.cookie.toString());
     Provider.of<UserViewModel>(context, listen: false).updateUser(user);
-    Navigator.pushReplacementNamed(context, '/chats');
+    Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const ChatHistoryScreen(),
+        ));
     CustomSnackBar.showSuccess(context, message: "Signed In", action: () {});
   }
 }
@@ -58,11 +64,20 @@ class DismissModalEvent extends AuthEvent {
 }
 
 class SignupSuccess extends AuthEvent {
+  final AppUser user;
+
+  SignupSuccess(this.user);
+
   @override
   Future<void> navigate(BuildContext context) async {
     super.navigate(context);
-    Navigator.pushReplacementNamed(context, '/chats');
-    CustomSnackBar.showSuccess(context, message: "Signed In", action: () {});
+
+    Provider.of<UserViewModel>(context, listen: false).updateUser(user);
+    StorageHelper.setString("cookie", user.cookie.toString());
+    Provider.of<UserViewModel>(context, listen: false).getRemote();
+    Navigator.pushReplacementNamed(context, '/signIn');
+    CustomSnackBar.showSuccess(context,
+        message: "User registered, login to continue", action: () {});
   }
 }
 

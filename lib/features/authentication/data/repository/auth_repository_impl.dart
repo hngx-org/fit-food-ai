@@ -10,6 +10,8 @@ import 'package:hng_authentication/src/models/user.dart';
 class AuthRepositoryImpl extends IAuthRepository {
   final _auth = Authentication();
 
+
+
   @override
   Future<Either<AppError, AppUser>> login(
       {required String email, required String password}) async {
@@ -25,6 +27,7 @@ class AuthRepositoryImpl extends IAuthRepository {
   @override
   Future<Either<AppError, AppUser>> signUp(
       {required String email, required String name, required String password}) {
+
     return PackageConsumingHelper.makeRequest<AppError, AppUser>(
         () => _auth.signUp(email, name, password), successResponse: (response) {
       log(response.runtimeType.toString());

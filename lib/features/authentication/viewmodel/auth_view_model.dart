@@ -67,7 +67,7 @@ class AuthViewModel extends BaseViewModel {
     }, (right) {
       /// Dispatching Success events
       navigator.dispatch(DismissModalEvent());
-      navigator.dispatch(SignupSuccess());
+      navigator.dispatch(SignupSuccess(right));
       return _signUpState =
           AuthState(isLoading: false, error: null, data: right);
     });
