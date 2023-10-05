@@ -1,6 +1,8 @@
 import 'package:fit_food/components/shared/app_colors.dart';
 import 'package:fit_food/components/shared/styles.dart';
 import 'package:fit_food/components/widgets/app_button.dart';
+import 'package:fit_food/core/constants/storage_keys.dart';
+import 'package:fit_food/core/helpers/storage_helper.dart';
 import 'package:fit_food/features/onboarding/components/onboarding_indicator.dart';
 import 'package:fit_food/features/onboarding/components/onboarding_item.dart';
 import 'package:fit_food/features/onboarding/data/models/onboarding_info_model.dart';
@@ -78,6 +80,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                       secondChild: AppBTN(
                         title: 'CONTINUE',
                         onTap: () {
+
+                          StorageHelper.setBoolean(
+                              StorageKeys.isOnboarded, true);
+
                           Navigator.pushReplacementNamed(context, '/signIn');
                         },
                       ),

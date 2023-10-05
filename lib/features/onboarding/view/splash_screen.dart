@@ -1,10 +1,13 @@
-import 'package:fit_food/features/onboarding/view/onboarding_screen.dart';
+import 'package:fit_food/common/viewmodels/user_view_model.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../components/shared/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  const SplashScreen({super.key, required this.nextScreen});
+
+  final Widget nextScreen;
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -13,9 +16,13 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      Provider.of<UserViewModel>(context, listen: false).loadLocalUser();
+    });
+
     Future.delayed(const Duration(seconds: 3)).then(
         (value) => Navigator.of(context).pushReplacement(MaterialPageRoute(
-              builder: (context) => const OnboardingScreen(),
+              builder: (context) => widget.nextScreen,
             )));
     super.initState();
   }

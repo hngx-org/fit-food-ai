@@ -1,4 +1,5 @@
-import 'package:fit_food/features/onboarding/data/models/chat_screen_model.dart';
+import 'package:fit_food/common/extensions/string_extensions.dart';
+import 'package:fit_food/features/chats/models/conversation.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -19,8 +20,8 @@ class ChatLog extends StatelessWidget {
           : MainAxisAlignment.start,
       children: [
         Container(
-          width: MediaQuery.of(context).size.width * 0.8,
-          padding: EdgeInsets.all(15),
+          width: MediaQuery.of(context).size.width * 0.7,
+          padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
             color: chatMessage.sender == "user"
                 ? kcChatSentColor
@@ -30,7 +31,7 @@ class ChatLog extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(chatMessage.text),
+              Text(chatMessage.text.messageResponse),
               Align(
                 alignment: Alignment.bottomRight,
                 child: Text(
