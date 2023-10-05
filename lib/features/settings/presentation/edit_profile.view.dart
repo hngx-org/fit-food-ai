@@ -183,6 +183,19 @@ class _EditProfileState extends State<EditProfile> {
                       context,
                       update,
                     );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Center(
+                          child: Text(
+                            'Profile update successful',
+                            style: nameText.copyWith(
+                              color: kcWhiteColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
                   },
                 ),
               ],
