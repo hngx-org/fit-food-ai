@@ -28,22 +28,21 @@ class _ChatHistoryItemState extends State<ChatHistoryItem> {
               ));
         },
         child: Container(
-          decoration: BoxDecoration(
-            boxShadow: [
-              BoxShadow(
-                color: Colors.grey.withOpacity(0.8),
-                spreadRadius: 10,
-                blurRadius: 5,
-                offset: Offset(0, 7), // changes position of shadow
-              ),
-            ],
-          ),
+          decoration: const BoxDecoration(),
           padding: const EdgeInsets.all(18.0),
-          child: Column(
+          child: Row(
             children: [
-              Text(
-                widget.title,
-                style: btnText.copyWith(color: kcTxtColorLight, fontSize: 16),
+              const CircleAvatar(
+                radius: 20,
+              ),
+              Column(
+                children: [
+                  Text(
+                    widget.title,
+                    style:
+                        btnText.copyWith(color: kcTxtColorLight, fontSize: 16),
+                  ),
+                ],
               ),
             ],
           ),
