@@ -53,6 +53,7 @@ dependencies:
       ref: main
   uuid: ^4.1.0
   in_app_payment: ^0.0.1
+  flutter_custom_clippers: ^2.1.0
 
 dev_dependencies:
   flutter_test:

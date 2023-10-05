@@ -49,5 +49,10 @@ List<String> foodAdvice = [
   "$leadingMessage enjoy treats in moderation rather than deprivation.",
 ];
 
-String fitnessBotGreeting =
-    "Hello there! I'm your fitness food advisor. 🏋️‍♂️🥗 How can I assist you today with your nutrition and health goals? Whether you need tips on meal planning, healthy recipes, or dietary advice, I'm here to help!";
+
+String subscriptionNeededMessage = "Error: Subscription Required";
+
+String fitnessBotGreeting = "Hello there! I'm your fitness food advisor. 🏋️‍♂️🥗 How can I assist you today with your nutrition and health goals? Whether you need tips on meal planning, healthy recipes, or dietary advice, I'm here to help!";
+
+String subscribeMessage =
+    "Sorry you have exceeded your credit, Subscribe now to access exclusive features and benefits. Enjoy a richer experience and get the most out of our services. Subscribe today!";
