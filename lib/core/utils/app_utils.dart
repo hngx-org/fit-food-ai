@@ -4,7 +4,7 @@ import 'package:fit_food/components/shared/app_colors.dart';
 import 'package:fit_food/core/constants/storage_keys.dart';
 import 'package:fit_food/core/helpers/storage_helper.dart';
 import 'package:fit_food/features/authentication/views/sign_in.dart';
-import 'package:fit_food/features/chats/chat_screen.dart';
+import 'package:fit_food/features/chats/view/chat_history_screen.dart';
 import 'package:fit_food/features/onboarding/view/onboarding_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +62,7 @@ class AppUtils {
     log("IS LOGGED IN: $isLoggedIn");
     if (hasOnboarded) {
       if (isLoggedIn) {
-        return const ChatScreen();
+        return const ChatHistoryScreen();
       } else {
         return const SignIn();
       }

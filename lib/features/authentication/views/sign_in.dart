@@ -95,8 +95,8 @@ class _SignInState extends State<SignIn> {
                     ),
                     validator: MultiValidator([
                       RequiredValidator(errorText: "Enter Password"),
-                      MinLengthValidator(6,
-                          errorText: "Password should be up to 6 character"),
+                      MinLengthValidator(8,
+                          errorText: "Password should be up to 8 character"),
                     ]),
                   ),
                   Align(

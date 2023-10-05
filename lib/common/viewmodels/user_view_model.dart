@@ -2,16 +2,20 @@ import 'package:fit_food/common/base/base_view_model.dart';
 import 'package:fit_food/common/data/user/iuser_repository.dart';
 import 'package:fit_food/common/events/user_events.dart';
 import 'package:fit_food/common/models/app_user.dart';
+import 'package:fit_food/core/helpers/storage_helper.dart';
 
 class UserViewModel extends BaseViewModel {
   final IUserRepository userRepository;
   AppUser? _user;
   bool _isLoading = false;
+
   bool get isLoading => _isLoading;
+
   set isLoading(bool value) {
     _isLoading = value;
     notifyListeners();
   }
+
   UserViewModel(this.userRepository);
 
   AppUser? get user => _user;
@@ -41,6 +45,7 @@ class UserViewModel extends BaseViewModel {
       return null;
     }, (right) {
       _user = right;
+      StorageHelper.setString("cookie", right.cookie.toString());
       isLoading = false;
       updateUser(right);
     });

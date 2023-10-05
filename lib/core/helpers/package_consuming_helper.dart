@@ -28,6 +28,12 @@ class PackageConsumingHelper {
       if (isNetworkActive) {
         var response = await request();
         log((response.toString()));
+
+        if (response.toString().contains("Error")) {
+          return Left(
+              errorResponse(AppError(message: response.toString(), code: 400)));
+        }
+
         return Right(successResponse(response));
       } else {
         var error = AppError(message: 'No internet connection', code: 400);
