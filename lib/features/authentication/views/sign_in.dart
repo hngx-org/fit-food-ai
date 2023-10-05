@@ -99,20 +99,6 @@ class _SignInState extends State<SignIn> {
                           errorText: "Password should be up to 8 character"),
                     ]),
                   ),
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        'Forgot Password?',
-                        style: TextStyle(
-                          color: kcTxtColorDark,
-                          fontWeight: FontWeight.w200,
-                          fontFamily: 'Poppins',
-                        ),
-                      ),
-                    ),
-                  ),
                   SizedBox(height: height * 0.06),
                   AppUiStateBinding.bind<AuthViewModel, AuthState>(
                       value: (vm) => vm.loginState,
