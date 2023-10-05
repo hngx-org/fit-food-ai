@@ -70,6 +70,8 @@ class ChatViewModel extends BaseViewModel {
           navigator.dispatch(SubscribeEvent());
           _addSubscribePrompt(convoId ?? _convoId!);
         } else {
+          _messages.add(ChatMessage.error());
+
           navigator.dispatch(SendMessageFailedEvent(left.message));
         }
       }, (right) {
@@ -101,6 +103,9 @@ class ChatViewModel extends BaseViewModel {
           navigator.dispatch(SubscribeEvent());
           _addSubscribePrompt(convoId ?? _convoId!);
         } else {
+          _messages.add(ChatMessage.error());
+          navigator.dispatch(
+              AddMessageEvent(ChatMessage.error(), convoId ?? _convoId!));
           navigator.dispatch(SendMessageFailedEvent(left.message));
         }
       }, (right) {

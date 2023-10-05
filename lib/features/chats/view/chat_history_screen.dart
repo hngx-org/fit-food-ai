@@ -6,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 
-import '../../../common/base/base_view_model.dart';
-import '../../../common/models/app_user.dart';
-import '../../../common/viewmodels/user_view_model.dart';
 import '../../../components/shared/styles.dart';
 
 class ChatHistoryScreen extends StatefulWidget {
@@ -34,36 +31,16 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
       appBar: AppBar(
         titleSpacing: 0,
         automaticallyImplyLeading: true,
-        backgroundColor: Colors.white,
-        surfaceTintColor: Colors.white,
+        // backgroundColor: Colors.white,
+        centerTitle: true,
+        // surfaceTintColor: Colors.white,
         actions: [
           IconButton(
             onPressed: () => Navigator.pushNamed(context, '/settings'),
             icon: const Icon(IconlyLight.setting),
           ),
         ],
-        leading: IconButton(
-          icon: Image.asset(smallLogo),
-          onPressed: () {},
-        ),
-        title: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Good Morning",
-              style: smallText.copyWith(color: kcTxtColorDark, fontSize: 12),
-            ),
-            AppUiStateBinding.bind<UserViewModel, AppUser?>(
-                value: (vm) => vm.user,
-                to: (context, state, vm) {
-                  return Text(
-                    state?.name ?? "Guest",
-                    style:
-                        btnText.copyWith(color: kcTxtColorDark, fontSize: 16),
-                  );
-                }),
-          ],
-        ),
+        title: const Text('Chat History'),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: kcBtnColor,
@@ -79,7 +56,18 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
         child:
             Consumer<ConversationsViewModel>(builder: (context, state, child) {
           return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 10),
+              //   child: Text(
+              //     'Conversation History',
+              //     style: nameText.copyWith(
+              //         color: kcTxtColorLight,
+              //         fontSize: 20,
+              //         fontWeight: FontWeight.w500),
+              //   ),
+              // ),
               Expanded(
                 child: state.conversations.isEmpty
                     ? Center(
@@ -90,12 +78,13 @@ class _ChatHistoryScreenState extends State<ChatHistoryScreen> {
                             Image(
                                 image: AssetImage('assets/conversation.png'),
                                 width: MediaQuery.of(context).size.width * 0.7),
-                            SizedBox(
+                            const SizedBox(
                               height: 20,
                             ),
                             Text(
                               'NO CONVERSATIONS YET',
-                              style: skipText.copyWith(color: kcTxtColorLight,fontSize: 14),
+                              style: skipText.copyWith(
+                                  color: kcTxtColorLight, fontSize: 14),
                             ),
                           ],
                         ),
