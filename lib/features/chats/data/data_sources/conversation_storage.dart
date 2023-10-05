@@ -76,4 +76,19 @@ class ConversationsStorage {
     final conversationsJson = jsonEncode(conversationsJsonList);
     StorageHelper.setString(_key, conversationsJson);
   }
+
+  Future<void> deleteAllConversations() async {
+    StorageHelper.remove(_key);
+  }
+
+  Future<void> deleteConversation(String conversationId) async {
+    final List<Conversation> conversations = await getAllConversations();
+    final conversationIndex =
+        conversations.indexWhere((conv) => conv.id == conversationId);
+
+    if (conversationIndex != -1) {
+      conversations.removeAt(conversationIndex);
+      await _saveConversations(conversations);
+    }
+  }
 }

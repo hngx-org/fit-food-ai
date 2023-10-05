@@ -99,7 +99,7 @@ class _SignUpState extends State<SignUp> {
                   validator: MultiValidator([
                     RequiredValidator(errorText: "Enter Password"),
                     MinLengthValidator(8,
-                        errorText: "Password should be up to 8s character"),
+                        errorText: "Password should be up to 8 character"),
                   ]),
                   leading: const Icon(
                     IconlyLight.lock,

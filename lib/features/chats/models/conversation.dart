@@ -59,6 +59,13 @@ class ChatMessage {
         timestamp: timestamp ?? this.timestamp,
       );
 
+
+  factory ChatMessage.botTyping() => ChatMessage(
+    text: 'Bot is typing....',
+    sender:'',
+    timestamp: DateTime.now(),
+  );
+
   factory ChatMessage.fromJson(Map<String, dynamic> json) => ChatMessage(
     text: json["text"],
     sender: json["sender"],

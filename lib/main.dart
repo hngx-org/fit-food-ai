@@ -2,14 +2,16 @@ import 'package:fit_food/common/data/user/user_repository_impl.dart';
 import 'package:fit_food/common/viewmodels/user_view_model.dart';
 import 'package:fit_food/core/utils/app_utils.dart';
 import 'package:fit_food/features/chats/data/repository/chat_repository_impl.dart';
+import 'package:fit_food/features/chats/view/chat_history_screen.dart';
 import 'package:fit_food/features/chats/view_model/chat_view_model.dart';
+import 'package:fit_food/features/chats/view_model/conversations_history_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'features/authentication/data/repository/auth_repository_impl.dart';
 import 'features/authentication/viewmodel/auth_view_model.dart';
 import 'features/authentication/views/sign_in.dart';
 import 'features/authentication/views/sign_up.dart';
-import 'features/chats/chat_screen.dart';
+import 'features/chats/view/chat_screen.dart';
 import 'features/onboarding/view/splash_screen.dart';
 import 'features/settings/presentation/edit_profile.view.dart';
 import 'features/settings/presentation/settings_view.dart';
@@ -39,6 +41,8 @@ class MyApp extends StatelessWidget {
             create: (context) => UserViewModel(UserRepositoryImpl())),
         ChangeNotifierProvider<ChatViewModel>(
             create: (context) => ChatViewModel(ChatRepositoryImpl())),
+        ChangeNotifierProvider<ConversationsViewModel>(
+            create: (context) => ConversationsViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -54,6 +58,7 @@ class MyApp extends StatelessWidget {
           '/signIn': (ctx) => const SignIn(),
           '/signUp': (ctx) => const SignUp(),
           '/chats': (ctx) => const ChatScreen(),
+          '/chat-history': (ctx) => const ChatHistoryScreen(),
           '/settings': (ctx) => const SettingsScreen(),
           '/edit-profile': (ctx) => const EditProfile(),
         },

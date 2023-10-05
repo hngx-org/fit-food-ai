@@ -1,4 +1,5 @@
-import 'dart:math';
+import 'dart:developer';
+import 'dart:math' as math;
 
 import 'package:either_dart/either.dart';
 import 'package:fit_food/common/base/base_view_model.dart';
@@ -46,44 +47,68 @@ class ChatViewModel extends BaseViewModel {
     _messages = value;
   }
 
+  // SENDS MESSAGE TO BOT
   Future<void> sendMessage(
       {String? convoId, required ChatMessage message}) async {
     _messages.add(message);
 
-    log(_messages.length);
+    log(_messages.length.toString());
 
+    _addTyping();
     botTyping = true;
     notifyListeners();
 
-    if (convoId != null && _convoId == null) {
+    if (convoId == null && _convoId == null) {
+      var uuid = const Uuid().v4();
+      final result =
+          await _chatRepository.startChatWithMessage(message: message.text);
+      result.fold((left) {
+        _removeTyping();
+
+        // TODO: CHECK FOR RESPONSE IF CREDITS ARE FINISHED
+      }, (right) {
+        _removeTyping();
+
+        navigator.dispatch(CreateConversationEvent(message.text, uuid));
+        navigator.dispatch(AddMessageEvent(
+            ChatMessage(text: right, sender: "", timestamp: DateTime.now()),
+            uuid));
+        _convoId = uuid;
+
+        _messages.add(
+            ChatMessage(text: right, sender: '', timestamp: DateTime.now()));
+
+        notifyListeners();
+      });
+    } else {
       final history = _messages.map((e) => e.text).toList();
       var result = await _chatRepository.getChatWithHistory(
           history: history, message: message.text);
-      navigator.dispatch(AddMessageEvent(message.text, convoId));
 
-      result.fold((left) => null, (right) => null);
-    } else {
-      var uuid = const Uuid().v4();
-      final result =
-          _chatRepository.startChatWithMessage(message: message.text);
+      navigator.dispatch(AddMessageEvent(
+          ChatMessage(
+              text: message.text, sender: "user", timestamp: DateTime.now()),
+          convoId ?? _convoId!));
+      _removeTyping();
       result.fold((left) {
-        // TODO: CHECK FOR RESPONSE IF CREDITS ARE FINISHED
-        return null;
+        _removeTyping();
       }, (right) {
+        navigator.dispatch(AddMessageEvent(
+            ChatMessage(text: right, sender: "", timestamp: DateTime.now()),
+            convoId ?? _convoId!));
         _messages.add(
             ChatMessage(text: right, sender: '', timestamp: DateTime.now()));
-        notifyListeners();
-        navigator.dispatch(CreateConversationEvent(message.text, uuid));
       });
-      notifyListeners();
     }
   }
 
+  // RETRIEVES LOCALLY SAVED MESSAGES
   Future<void> getMessages(String convoId) async {
     messageLoading = true;
     var conversation = _chatRepository.getConversation(id: convoId);
     conversation.fold((left) {
       messageLoading = false;
+
       notifyListeners();
       // TODO: DISPATCH GET MESSAGES FAILED STATE
     }, (right) {
@@ -99,8 +124,9 @@ class ChatViewModel extends BaseViewModel {
     });
   }
 
+  // SIMULATING RESPONSE FROM BOT
   void simulateResponse(ChatMessage message) {
-    Random r = Random();
+    math.Random r = math.Random();
     var any = greetingMessages.where(
         (element) => element.toUpperCase() == message.text.toUpperCase());
 
@@ -134,5 +160,15 @@ class ChatViewModel extends BaseViewModel {
         index: 0,
         // alignment: 0.5,
         duration: const Duration(milliseconds: 300));
+  }
+
+  void _addTyping() {
+    _messages.add(ChatMessage.botTyping());
+    notifyListeners();
+  }
+
+  void _removeTyping() {
+    _messages.removeWhere((element) => element.text == "Bot is typing....");
+    notifyListeners();
   }
 }

@@ -7,13 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
-import '../../components/shared/app_colors.dart';
-import '../../components/shared/styles.dart';
-import 'data/repository/chat_repository_impl.dart';
-import 'models/conversation.dart';
+import '../../../components/shared/app_colors.dart';
+import '../../../components/shared/styles.dart';
+import '../data/repository/chat_repository_impl.dart';
+import '../models/conversation.dart';
 
 class ChatScreen extends StatefulWidget {
-  const ChatScreen({Key? key}) : super(key: key);
+  const ChatScreen({Key? key, this.convoId}) : super(key: key);
+  final String? convoId;
 
   static const routeName = '/chats';
 
@@ -24,16 +25,27 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final messageController = TextEditingController();
 
+  final chatViewModel = ChatViewModel(ChatRepositoryImpl());
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      if (widget.convoId != null) {
+        chatViewModel.getMessages(widget.convoId!);
+      }
+    });
+    super.initState();
+  }
+
   @override
   void dispose() {
     messageController.dispose();
     super.dispose();
   }
 
-  _sendMessage(TextEditingController controller,BuildContext context) {
+  _sendMessage(TextEditingController controller, BuildContext context) {
     if (controller.text.isNotEmpty) {
       Provider.of<ChatViewModel>(context, listen: false).sendMessage(
-          // TODO:ADD CONVO ID
+          convoId: widget.convoId,
           message: ChatMessage(
               sender: "user",
               text: controller.text.toString(),
@@ -81,8 +93,8 @@ class _ChatScreenState extends State<ChatScreen> {
           ],
         ),
       ),
-      body: ChangeNotifierProvider<ChatViewModel>(
-        create: (context) => ChatViewModel(ChatRepositoryImpl()),
+      body: ViewModelProviderValue<ChatViewModel>(
+        value: chatViewModel,
         child: Consumer<ChatViewModel>(builder: (context, state, widget) {
           return Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
@@ -142,7 +154,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                       InkWell(
                         onTap: () {
-                          _sendMessage(messageController,context);
+                          _sendMessage(messageController, context);
                         },
                         child: Container(
                           alignment: Alignment.center,

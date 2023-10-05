@@ -1,4 +1,5 @@
 import 'package:fit_food/common/viewmodels/user_view_model.dart';
+import 'package:fit_food/core/helpers/storage_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
 import 'package:provider/provider.dart';
@@ -128,6 +129,7 @@ class SettingsScreen extends StatelessWidget {
                   ),
                   onTap: () {
                     Navigator.pushReplacementNamed(context, '/signIn');
+                    StorageHelper.clear();
                   },
                 ),
               ],

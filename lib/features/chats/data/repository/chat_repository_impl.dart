@@ -9,8 +9,8 @@ import 'package:fit_food/features/chats/models/conversation.dart';
 import 'package:hngx_openai/repository/openai_repository.dart';
 
 class ChatRepositoryImpl extends IChatRepository {
-  OpenAIRepository _openAI = OpenAIRepository();
-  ConversationsStorage _conversationsStorage = ConversationsStorage();
+  final OpenAIRepository _openAI = OpenAIRepository();
+  final ConversationsStorage _conversationsStorage = ConversationsStorage();
 
   @override
   Future<Either<AppError, String>> getChatWithHistory(
@@ -34,7 +34,6 @@ class ChatRepositoryImpl extends IChatRepository {
       {required String message}) async {
     String? cookie = await StorageHelper.getString('cookie');
     log(cookie.toString());
-
 
     return PackageConsumingHelper.makeRequest<AppError, String>(
         () => _openAI.getChat(message, cookie ?? ''),
