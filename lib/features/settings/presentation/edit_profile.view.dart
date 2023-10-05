@@ -1,4 +1,5 @@
 import 'package:fit_food/common/viewmodels/user_view_model.dart';
+import 'package:fit_food/features/settings/presentation/widgets/edit.data.dart';
 import 'package:fit_food/features/settings/presentation/widgets/image_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:iconly/iconly.dart';
@@ -29,6 +30,12 @@ class _EditProfileState extends State<EditProfile> {
   @override
   Widget build(BuildContext context) {
     final uImage = ModalRoute.of(context)!.settings.arguments;
+    var userData = ModalRoute.of(context)?.settings.arguments as UserEdit;
+
+    var update = [
+      userData.username,
+      userData.email,
+    ];
 
     path = uImage.toString();
     final height = MediaQuery.of(context).size.height;
@@ -40,7 +47,10 @@ class _EditProfileState extends State<EditProfile> {
           backgroundColor: kcWhiteColor,
           centerTitle: true,
           leading: IconButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.pop(
+              context,
+              update,
+            ),
             icon: const Icon(
               IconlyLight.arrow_left_2,
               color: kcTxtColorDark,
@@ -101,19 +111,29 @@ class _EditProfileState extends State<EditProfile> {
                 ),
                 SizedBox(height: height * 0.03),
                 AppTXTField(
-                  hint: state.user?.name ?? 'Victor Benita D.',
+                  hint: userData.username ?? 'Victor Benita D.',
                   leading: const Icon(
                     IconlyLight.profile,
                     color: kcChatRcvdColor,
                   ),
+                  onChanged: (userName) {
+                    setState(() {
+                      userData.username = userName;
+                    });
+                  },
                 ),
                 SizedBox(height: height * 0.035),
                 AppTXTField(
-                  hint: state.user?.name ?? 'victorbenita3421@hngx.org',
+                  hint: userData.email ?? 'victorbenita3421@hngx.org',
                   leading: const Icon(
                     IconlyLight.message,
                     color: kcChatRcvdColor,
                   ),
+                  onChanged: (userEmail) {
+                    setState(() {
+                      userData.email = userEmail;
+                    });
+                  },
                 ),
                 SizedBox(height: height * 0.035),
                 AppTXTField(
@@ -158,7 +178,25 @@ class _EditProfileState extends State<EditProfile> {
                 SizedBox(height: height * 0.06),
                 AppBTN(
                   title: 'SAVE NOW',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pop(
+                      context,
+                      update,
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: Colors.green,
+                        content: Center(
+                          child: Text(
+                            'Profile update successful',
+                            style: nameText.copyWith(
+                              color: kcWhiteColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
