@@ -3,6 +3,7 @@ import 'dart:math' as math;
 
 import 'package:either_dart/either.dart';
 import 'package:fit_food/common/base/base_view_model.dart';
+import 'package:fit_food/common/extensions/string_extensions.dart';
 import 'package:fit_food/core/constants/messages.dart';
 import 'package:fit_food/features/chats/data/repository/IchatRepository.dart';
 import 'package:fit_food/features/chats/events/chat_events.dart';
@@ -60,10 +61,17 @@ class ChatViewModel extends BaseViewModel {
 
     if (convoId == null && _convoId == null) {
       var uuid = const Uuid().v4();
-      final result =
-          await _chatRepository.startChatWithMessage(message: message.text);
+      final result = await _chatRepository.startChatWithMessage(
+          message: message.text.formattedPrompt);
       result.fold((left) {
         _removeTyping();
+        if (left.message == subscriptionNeededMessage) {
+          _addSubscribePrompt("");
+          navigator.dispatch(SubscribeEvent());
+          _addSubscribePrompt(convoId ?? _convoId!);
+        } else {
+          navigator.dispatch(SendMessageFailedEvent(left.message));
+        }
       }, (right) {
         _removeTyping();
 
@@ -80,20 +88,21 @@ class ChatViewModel extends BaseViewModel {
     } else {
       final history = _messages.map((e) => e.text).toList();
       var result = await _chatRepository.getChatWithHistory(
-          history: history, message: message.text);
+          history: history, message: message.text.formattedPrompt);
 
       navigator.dispatch(AddMessageEvent(
           ChatMessage(
               text: message.text, sender: "user", timestamp: DateTime.now()),
           convoId ?? _convoId!));
       _removeTyping();
-      result.fold((left) {
 
-        navigator.dispatch(AddMessageEvent(
-            ChatMessage(text: message.text, sender: "", timestamp: DateTime.now()),
-            convoId ?? _convoId!));
-        navigator.dispatch(SubscribeEvent());
-        _addSubscribePrompt(convoId ?? _convoId!);
+      result.fold((left) {
+        if (left.message == subscriptionNeededMessage) {
+          navigator.dispatch(SubscribeEvent());
+          _addSubscribePrompt(convoId ?? _convoId!);
+        } else {
+          navigator.dispatch(SendMessageFailedEvent(left.message));
+        }
       }, (right) {
         navigator.dispatch(AddMessageEvent(
             ChatMessage(text: right, sender: "", timestamp: DateTime.now()),

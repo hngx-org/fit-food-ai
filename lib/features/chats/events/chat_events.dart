@@ -59,3 +59,17 @@ class SubscribeEvent extends ChatEvents {
         message: 'Credit exceeded', action: () {}, actionMessage: "Subscribe");
   }
 }
+
+class SendMessageFailedEvent extends ChatEvents {
+
+  final String error;
+
+  SendMessageFailedEvent(this.error);
+
+  @override
+  Future<void> navigate(BuildContext context) async {
+    super.navigate(context);
+
+    CustomSnackBar.showError(context, message: "Something went wrong..",action: (){});
+  }
+}

@@ -50,7 +50,7 @@ List<String> foodAdvice = [
 ];
 
 
-// String subscriptionNeededMessage
+String subscriptionNeededMessage = "Error: Subscription Required";
 
 String fitnessBotGreeting = "Hello there! I'm your fitness food advisor. 🏋️‍♂️🥗 How can I assist you today with your nutrition and health goals? Whether you need tips on meal planning, healthy recipes, or dietary advice, I'm here to help!";
 
