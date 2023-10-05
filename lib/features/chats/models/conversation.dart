@@ -75,6 +75,11 @@ class ChatMessage {
         sender: '',
         timestamp: DateTime.now(),
       );
+  factory ChatMessage.error() => ChatMessage(
+        text: "Sorry something went wrong from server",
+        sender: '',
+        timestamp: DateTime.now(),
+      );
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) => ChatMessage(
         text: json["text"],
