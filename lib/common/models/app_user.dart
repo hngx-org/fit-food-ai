@@ -2,8 +2,8 @@ import 'package:hng_authentication/src/models/user.dart';
 
 class AppUser {
   final String id;
-  final String name;
-  final String email;
+  String name;
+  String email;
   final DateTime? createdAt;
   final DateTime? updatedAt;
   final int? credits;
