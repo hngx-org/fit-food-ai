@@ -172,7 +172,7 @@ class _UpgradePlanState extends State<UpgradePlan> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: planUpgrade.applePay(
+                child: planUpgrade.googlePay(
                   amountToPay: selectedPlan,
                 ),
               ),
