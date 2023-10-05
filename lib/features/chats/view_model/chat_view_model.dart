@@ -64,8 +64,6 @@ class ChatViewModel extends BaseViewModel {
           await _chatRepository.startChatWithMessage(message: message.text);
       result.fold((left) {
         _removeTyping();
-
-        // TODO: CHECK FOR RESPONSE IF CREDITS ARE FINISHED
       }, (right) {
         _removeTyping();
 
@@ -74,7 +72,6 @@ class ChatViewModel extends BaseViewModel {
             ChatMessage(text: right, sender: "", timestamp: DateTime.now()),
             uuid));
         _convoId = uuid;
-
         _messages.add(
             ChatMessage(text: right, sender: '', timestamp: DateTime.now()));
 
@@ -91,7 +88,12 @@ class ChatViewModel extends BaseViewModel {
           convoId ?? _convoId!));
       _removeTyping();
       result.fold((left) {
-        _removeTyping();
+
+        navigator.dispatch(AddMessageEvent(
+            ChatMessage(text: message.text, sender: "", timestamp: DateTime.now()),
+            convoId ?? _convoId!));
+        navigator.dispatch(SubscribeEvent());
+        _addSubscribePrompt(convoId ?? _convoId!);
       }, (right) {
         navigator.dispatch(AddMessageEvent(
             ChatMessage(text: right, sender: "", timestamp: DateTime.now()),
@@ -108,7 +110,6 @@ class ChatViewModel extends BaseViewModel {
     var conversation = _chatRepository.getConversation(id: convoId);
     conversation.fold((left) {
       messageLoading = false;
-
       notifyListeners();
       // TODO: DISPATCH GET MESSAGES FAILED STATE
     }, (right) {
@@ -164,6 +165,13 @@ class ChatViewModel extends BaseViewModel {
 
   void _addTyping() {
     _messages.add(ChatMessage.botTyping());
+    notifyListeners();
+  }
+
+  void _addSubscribePrompt(String convoId) {
+    _messages.add(ChatMessage.subscribe());
+    navigator.dispatch(
+        AddMessageEvent(ChatMessage.subscribe(), convoId ?? _convoId!));
     notifyListeners();
   }
 

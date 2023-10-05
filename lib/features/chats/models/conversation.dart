@@ -4,7 +4,10 @@
 
 import 'dart:convert';
 
-Conversation conversationFromJson(String str) => Conversation.fromJson(json.decode(str));
+import 'package:fit_food/core/constants/messages.dart';
+
+Conversation conversationFromJson(String str) =>
+    Conversation.fromJson(json.decode(str));
 
 String conversationToJson(Conversation data) => json.encode(data.toJson());
 
@@ -27,14 +30,16 @@ class Conversation {
       );
 
   factory Conversation.fromJson(Map<String, dynamic> json) => Conversation(
-    id: json["id"],
-    chatMessages: List<ChatMessage>.from(json["chat_messages"].map((x) => ChatMessage.fromJson(x))),
-  );
+        id: json["id"],
+        chatMessages: List<ChatMessage>.from(
+            json["chat_messages"].map((x) => ChatMessage.fromJson(x))),
+      );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "chat_messages": List<dynamic>.from(chatMessages.map((x) => x.toJson())),
-  };
+        "id": id,
+        "chat_messages":
+            List<dynamic>.from(chatMessages.map((x) => x.toJson())),
+      };
 }
 
 class ChatMessage {
@@ -59,22 +64,27 @@ class ChatMessage {
         timestamp: timestamp ?? this.timestamp,
       );
 
-
   factory ChatMessage.botTyping() => ChatMessage(
-    text: 'Bot is typing....',
-    sender:'',
-    timestamp: DateTime.now(),
-  );
+        text: 'Bot is typing....',
+        sender: '',
+        timestamp: DateTime.now(),
+      );
+
+  factory ChatMessage.subscribe() => ChatMessage(
+        text: subscribeMessage,
+        sender: '',
+        timestamp: DateTime.now(),
+      );
 
   factory ChatMessage.fromJson(Map<String, dynamic> json) => ChatMessage(
-    text: json["text"],
-    sender: json["sender"],
-    timestamp: DateTime.parse(json["timestamp"]),
-  );
+        text: json["text"],
+        sender: json["sender"],
+        timestamp: DateTime.parse(json["timestamp"]),
+      );
 
   Map<String, dynamic> toJson() => {
-    "text": text,
-    "sender": sender,
-    "timestamp": timestamp.toIso8601String(),
-  };
+        "text": text,
+        "sender": sender,
+        "timestamp": timestamp.toIso8601String(),
+      };
 }
